@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mydigitalvision.example/schemas/atlas-record-v0.1.json",
+  "title": "ATLAS Record v0.1",
+  "type": "object",
+  "required": [
+    "atlas_index_id",
+    "node_id",
+    "object_class",
+    "status",
+    "authority_status",
+    "relations"
+  ],
+  "properties": {
+    "atlas_index_id": {
+      "type": "string",
+      "pattern": "^ZIDX-(PATH|NODE)-[A-F0-9]{16}$"
+    },
+    "node_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "zid": {
+      "type": ["string", "null"]
+    },
+    "cid": {
+      "type": ["string", "null"]
+    },
+    "zds_id": {
+      "type": ["string", "null"]
+    },
+    "root_id": {
+      "type": ["string", "null"]
+    },
+    "zerone_coordinate": {
+      "type": ["string", "null"]
+    },
+    "path": {
+      "type": ["string", "null"]
+    },
+    "path_key": {
+      "type": ["string", "null"]
+    },
+    "object_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "CURRENT",
+        "HISTORICAL",
+        "SUPERSEDED",
+        "EXPERIMENTAL",
+        "PROPOSAL",
+        "EVIDENCE",
+        "QUARANTINED",
+        "HOLD",
+        "UNKNOWN"
+      ]
+    },
+    "authority_status": {
+      "type": "string",
+      "enum": [
+        "REFERENCE_ONLY",
+        "NONE",
+        "UNKNOWN"
+      ]
+    },
+    "claim_state": {
+      "type": ["string", "null"]
+    },
+    "provenance_refs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "target"],
+        "properties": {
+          "kind": {"type": "string"},
+          "target": {"type": "string"},
+          "evidence_ref": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
